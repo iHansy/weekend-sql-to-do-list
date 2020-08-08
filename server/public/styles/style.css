@@ -33,3 +33,9 @@ table, th, tr, td, tbody {
 main h3 {
     margin-bottom: 1em;
 }
+
+footer {
+    float: right;
+    margin-right: 1em;
+    margin-top: 12em;
+}

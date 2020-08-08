@@ -1,8 +1,10 @@
 $(document).ready(startProject); 
 
 function startProject() {   
-    loadTasks();
-    
+    loadTasks(); // tasks appearing on page load
+    $('#taskBtn').on('click', addTask);
+
+
 } // end startProject
 
 function loadTasks() {
@@ -20,19 +22,15 @@ function loadTasks() {
         
 
         for (task of tasksList) { // appending for each task object
-            console.log(task.due_date);
-
+        
             if (task.due_date === null || '') {
-                task.due_date = 'no due date';
+                task.due_date = 'no due date'; // changing due_date if no input
             } else {
                 let date = task.due_date;
                 date = date.slice(0, -14);
                 task.due_date = date; // sliced off timestamp
-            }
+            } // end if..else
               
-            
-            
-
             tableBody.append(
                 `<tr>
                     <td>${task.task}</td>
@@ -49,3 +47,23 @@ function loadTasks() {
         console.log('error in loadTasks GET', error);
     })
 } // end loadTasks
+
+function addTask() {
+    console.log('adding task...');
+    let sendingTask = { // storing user inputs in an object, send to server/database
+        task: $('#taskIn').val(),
+        description: $('#descriptionIn').val(),
+        due_date: $('#dateIn').val(),
+    }
+    console.log('new task is:', sendingTask);
+    $.ajax({
+        type: 'POST',
+        url: '/tasks',
+        data: sendingTask,
+    }).then(function(response) { 
+        console.log('back from POST:', response);
+        loadTasks(); // reloading DOM with updated tasks from sql database
+    }).catch(function(error) {
+        alert('error adding task:', error);
+    })
+} // end addTask
