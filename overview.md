@@ -8,8 +8,8 @@ Overview
 
 To-Do
     {X} Create database and table - id, task, description, due date, status
-    {} Install node, pg, and body-parser
-    {} add all files including including .gitignore and favicon
+    {X} Install node, pg, and body-parser
+    {X} add all files including including .gitignore and favicon
 index.html / css
     {} Link all files
     {} Add beginning phase of DOM
