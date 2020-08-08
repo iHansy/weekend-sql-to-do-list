@@ -56,6 +56,7 @@ function addTask() {
         due_date: $('#dateIn').val(),
     }
     console.log('new task is:', sendingTask);
+    
     $.ajax({
         type: 'POST',
         url: '/tasks',

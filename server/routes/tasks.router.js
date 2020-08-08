@@ -21,6 +21,7 @@ pool.on('error', (error) => {
     console.log('error connecting to postgres', error);
 });
 
+//ROUTES
 // receiving tasks from sql database and sending to client
 taskRouter.get('/', (req, res) => {
     // sql code being declared
@@ -34,6 +35,28 @@ taskRouter.get('/', (req, res) => {
         res.sendStatus(500);
     })
 }) // end taskRouter.get
+
+taskRouter.post('/', (req, res) => {
+    let queryText = `
+        INSERT INTO "tasks" ("task", "description", "due_date")
+        VALUES ($1, $2, $3);
+        `; // sql sanitizing from injection
+
+    if (req.body.due_date === '') { // fixing if user doesn't input date
+        req.body.due_date = null;
+    }
+
+    console.log(req.body); // sendingTask object from client
+    const values = [req.body.task, req.body.description, req.body.due_date]
+    pool.query(queryText, values).then(result => {
+        console.log(result);
+        res.sendStatus(201); // created
+    }).catch(error => {
+        console.log('error in post', error);
+        res.sendStatus(500);
+    })
+
+})
 
 
 
