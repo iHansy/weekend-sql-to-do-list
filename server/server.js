@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({extended:true})); // allowing us to get data from
 app.use(express.static('server/public')); // giving us access to all files in server/public
 
 // routes
-// app.use('/tasks', taskRouter);
+app.use('/tasks', taskRouter);
 
 // start listening for requests on a specific port
 app.listen(PORT, () => {
