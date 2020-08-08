@@ -12,8 +12,8 @@ To-Do
     {X} add all files including including .gitignore and favicon
     {X} Create wireframe example
 index.html / css
-    {} Link all files
-    {} Add beginning phase of DOM
+    {X} Link all files
+    {X} Add beginning phase of DOM
     {} Make description box larger than other inputs
 server.js
     {} Set up pg, express, module, body parser, app.listen
@@ -39,3 +39,4 @@ Extras/Stretch
     {} If due date is not a date format don't proceed and alert user to fix format
     {} See if I can change buttons to not stick with bootstrap
     {} Center text in table cells
+    {} Match date format in input to table date
