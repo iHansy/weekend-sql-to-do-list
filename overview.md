@@ -1,12 +1,13 @@
 Overview
     {} Create project name and description
-    {} Same database name as read.me overview
-    {} Include all SQL strings in a .sql file
+    {X} Same database name as read.me overview
+    {} Include all SQL code in a .sql file
     {} Upload to online website via Heroku
     {} Sort columns by an order
+    {} Make sure favicon works
 
 To-Do
-    {} Create database and table - id, task, description, due date, status
+    {X} Create database and table - id, task, description, due date, status
     {} Install node, pg, and body-parser
     {} add all files including including .gitignore and favicon
 index.html / css
