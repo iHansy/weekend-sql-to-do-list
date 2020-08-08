@@ -1,0 +1,35 @@
+header {
+    margin-top: 2em;
+    text-align: center;
+}
+
+section {
+    margin-top: 3em;
+    text-align: center;
+}
+
+main {
+    margin-left: 10em;
+    margin-top: 3.5em;
+    margin-right: 10em;
+}
+
+.tableHeaders{
+    margin-left: 5px;
+    border-spacing: 5px;
+}
+
+table {
+    width: 100%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+table, th, tr, td, tbody {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+main h3 {
+    margin-bottom: 1em;
+}

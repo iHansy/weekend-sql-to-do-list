@@ -4,12 +4,13 @@ Overview
     {} Include all SQL code in a .sql file
     {} Upload to online website via Heroku
     {} Sort columns by an order
-    {} Make sure favicon works
+    {X} Make sure favicon works
 
 To-Do
     {X} Create database and table - id, task, description, due date, status
     {X} Install node, pg, and body-parser
     {X} add all files including including .gitignore and favicon
+    {X} Create wireframe example
 index.html / css
     {} Link all files
     {} Add beginning phase of DOM
@@ -34,3 +35,7 @@ Extras/Stretch
     {} Default no description and no due date gray italics
     {} Line through completed tasks
     {} Add red asterisk for needed input fields
+    {} Add footer saying created by iHansy. Maybe add linkedin, github link ect.. research what this should look like
+    {} If due date is not a date format don't proceed and alert user to fix format
+    {} See if I can change buttons to not stick with bootstrap
+    {} Center text in table cells
