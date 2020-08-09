@@ -4,6 +4,7 @@
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+The main purpose of this project is to organize tasks in a to-do like format.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+I implemented many features such as:
+* test

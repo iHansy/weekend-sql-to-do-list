@@ -21,6 +21,7 @@ main {
     margin-right: 10em;
     border: solid 4px;
     border-radius: 10px;
+    border-color: rgb(52, 58, 64);
 }
 
 .tableHeaders{
