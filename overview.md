@@ -39,7 +39,7 @@ Extras/Stretch
     {} If due date is not a date format don't proceed and alert user to fix format
     {} See if I can change buttons to not stick with bootstrap
     {} Center text in table cells
-    {} Match date format in input to table date
+    {} Match date format in input to table date.. manipulate in client.js, couldn't figure out how to do it in postgresql
     {} Change button sizes / spacing
     {} Fix order for all no due dates
     {} Alerts for empty inputs and catch errors

@@ -31,11 +31,12 @@ taskRouter.get('/', (req, res) => {
         // sends back the results in an array of objects
         res.send(result.rows); // need to type .rows to just the array, rest of results we don't need
     }).catch(error => {
-        console.log('error getting koalas', error);
+        console.log('error in GET', error);
         res.sendStatus(500);
     })
 }) // end taskRouter.get
 
+// sending post request to postgresql database server
 taskRouter.post('/', (req, res) => {
     let queryText = `
         INSERT INTO "tasks" ("task", "description", "due_date")
@@ -52,10 +53,29 @@ taskRouter.post('/', (req, res) => {
         console.log(result);
         res.sendStatus(201); // created
     }).catch(error => {
-        console.log('error in post', error);
+        console.log('error in POST', error);
         res.sendStatus(500);
     })
 
+})
+
+// sending delete request to sql database server
+taskRouter.delete('/:id', (req, res) => {
+    let id = req.params.id; // id of the thing to delete comes through params
+    console.log('delete route called with id of', id);
+    let queryText = `
+        DELETE FROM "tasks"
+        WHERE "id" = $1;
+        `;
+    
+    // sending query request to database to delete id as parameter
+    pool.query(queryText, [id]).then((result) => {
+        res.sendStatus(202); // Accepted
+    }).catch((error) => {
+        console.log('error in DELETE', error)
+        // responding back to client if error
+        res.sendStatus(500); // internal server error
+    })
 })
 
 

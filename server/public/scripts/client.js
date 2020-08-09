@@ -78,6 +78,8 @@ function deleteTask() {
     let deleteId = $(this).data('id'); // setting variable to id #
     console.log(deleteId);
 
+    alert('This will delete the selected task.');
+
     $.ajax({
         type: 'DELETE',
         url: `/tasks/${deleteId}`
