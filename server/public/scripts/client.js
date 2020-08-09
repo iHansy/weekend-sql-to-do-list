@@ -23,6 +23,8 @@ function loadTasks() {
 
         for (task of tasksList) { // appending for each task object
 
+
+
             if (task.due_date === null || '') {
                 task.due_date = 'no due date'; // changing due_date if no input
             } else {
@@ -80,6 +82,12 @@ function addTask() {
         description: $('#descriptionIn').val(),
         due_date: $('#dateIn').val(),
     }
+
+    if (sendingTask.task === ''){
+        alert('Please fill in the task input field.');
+        return;
+    }
+
     console.log('new task is:', sendingTask);
 
     $.ajax({
@@ -105,7 +113,12 @@ function deleteTask() {
     let deleteId = $(this).data('id'); // setting variable to id #
     console.log(deleteId);
 
-    alert('This will delete the selected task.');
+    // adding confirm to delete button
+    let r = confirm('Press OK to delete selected task.');
+    if (r == true) {
+    } else {
+    return;
+    }
 
     $.ajax({
         type: 'DELETE',

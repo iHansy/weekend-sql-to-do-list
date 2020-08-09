@@ -7,7 +7,7 @@ header h1{
 }
 
 section {
-    margin-top: 3em;
+    margin-top: 1.5em;
     text-align: center;
 }
 
@@ -54,5 +54,28 @@ th {
  .statusRed {
      color: red;
  }
+
+.guideInline {
+    display: inline;
+    font-size: 10px;
+}
+
+.taskReq {
+    color: red;
+    position: relative;
+    right: 175px;
+}
+
+.descReq {
+    position: relative;
+    right: 40px;
+    color: gray;
+}
+
+.dateReq {
+    position: relative;
+    left: 95px;
+    color: gray;
+}
 
 
