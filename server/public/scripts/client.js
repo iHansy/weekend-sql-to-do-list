@@ -1,6 +1,6 @@
-$(document).ready(startProject); 
+$(document).ready(startProject);
 
-function startProject() {   
+function startProject() {
     loadTasks(); // tasks appearing on page load
     $('#taskBtn').on('click', addTask);
     $('#tasksTable').on('click', '.deleteBtn', deleteTask);
@@ -12,17 +12,17 @@ function startProject() {
 function loadTasks() {
     console.log('loading tasks...');
     // ajax request to server
-    $.ajax ({
+    $.ajax({
         type: 'get',
         url: '/tasks',
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
         let tasksList = response; // response is an array of tasks objects
         let tableBody = $('#tasksTable'); // setting element to tbody
         tableBody.empty(); // emptying DOM on so no duplicates on load
 
         for (task of tasksList) { // appending for each task object
-        
+
             if (task.due_date === null || '') {
                 task.due_date = 'no due date'; // changing due_date if no input
             } else {
@@ -35,22 +35,40 @@ function loadTasks() {
             if (task.status === false) {
                 statusChange = 'Not completed';
             } else {
-                statusChange = 'Complete';
+                statusChange = 'Completed';
             }
-              
-            tableBody.append(
-                `<tr>
-                    <td>${task.task}</td>
-                    <td>${task.description}</td>
-                    <td>${task.due_date}</td>
-                    <td>${statusChange}</td>
-                    <td><button class="completeBtn" data-id="${task.id}" data-status="${task.status}">Complete</button></td>
-                    <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
-                </tr>`)
+
+            if (task.description === '') { // setting empty description
+                task.description = 'no description';
+
+            }
+
+            if (statusChange === 'Completed') {
+
+                tableBody.append(
+                    `<tr>
+                        <td class="taskComplete">${task.task}</td>
+                        <td class="taskComplete">${task.description}</td>
+                        <td class="taskComplete">${task.due_date}</td>
+                        <td class="statusGreen">${statusChange}</td>
+                        <td><button class="completeBtn btn-success" data-id="${task.id}" data-status="${task.status}">Complete</button></td>
+                        <td><button class="deleteBtn btn-danger" data-id="${task.id}">Delete</button></td>
+                    </tr>`)
+            } else {
+                tableBody.append(
+                    `<tr>
+                        <td>${task.task}</td>
+                        <td>${task.description}</td>
+                        <td>${task.due_date}</td>
+                        <td class="statusRed">${statusChange}</td>
+                        <td><button class="completeBtn btn-success" data-id="${task.id}" data-status="${task.status}">Complete</button></td>
+                        <td><button class="deleteBtn btn-danger" data-id="${task.id}">Delete</button></td>
+                    </tr>`)
+            }
         }
 
 
-    }).catch(function(error) { // in case response from server is broken
+    }).catch(function (error) { // in case response from server is broken
         console.log('error in loadTasks GET', error);
     })
 } // end loadTasks
@@ -68,11 +86,11 @@ function addTask() {
         type: 'POST',
         url: '/tasks',
         data: sendingTask,
-    }).then(function(response) { 
+    }).then(function (response) {
         console.log('back from POST:', response);
         loadTasks(); // reloading DOM with updated tasks from sql database
         clearInputs();
-    }).catch(function(error) {
+    }).catch(function (error) {
         alert('error adding task:', error);
     })
 } // end addTask
@@ -92,7 +110,7 @@ function deleteTask() {
     $.ajax({
         type: 'DELETE',
         url: `/tasks/${deleteId}`
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
         loadTasks(); // reloading DOM with updated task table
     }).catch(function (error) {
@@ -105,7 +123,7 @@ function completeTask() {
     let status = $(this).data('status'); // finding status of current task.. either true or false
 
     if (status === true) {
-        alert ('Task already complete!');
+        alert('Task already complete!');
         return
     }
 
@@ -119,10 +137,10 @@ function completeTask() {
         type: 'PUT',
         url: `/tasks/${completeId}`,
         data: payload
-    }).then(function(response) {
+    }).then(function (response) {
         console.log('back from PUT', response);
         loadTasks(); // reloading DOM with task complete
-    }).catch(function(error) {
+    }).catch(function (error) {
         alert('ERROR completing task:,', error);
     })
 } // end completeTask
