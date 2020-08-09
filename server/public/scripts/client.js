@@ -3,6 +3,7 @@ $(document).ready(startProject);
 function startProject() {   
     loadTasks(); // tasks appearing on page load
     $('#taskBtn').on('click', addTask);
+    $('#tasksTable').on('click', '.deleteBtn', deleteTask);
 
 
 } // end startProject
@@ -19,8 +20,6 @@ function loadTasks() {
         let tableBody = $('#tasksTable'); // setting element to tbody
         tableBody.empty(); // emptying DOM on so no duplicates on load
 
-        
-
         for (task of tasksList) { // appending for each task object
         
             if (task.due_date === null || '') {
@@ -30,6 +29,12 @@ function loadTasks() {
                 date = date.slice(0, -14);
                 task.due_date = date; // sliced off timestamp
             } // end if..else
+
+            if (task.status === false) {
+                task.status = 'Not completed';
+            } else {
+                task.status = 'Complete';
+            }
               
             tableBody.append(
                 `<tr>
@@ -37,8 +42,8 @@ function loadTasks() {
                     <td>${task.description}</td>
                     <td>${task.due_date}</td>
                     <td>${task.status}</td>
-                    <td><button>Complete</button></td>
-                    <td><button>Delete</button></td>
+                    <td><button class="completeBtn" data-id="${task.id}">Complete</button></td>
+                    <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
                 </tr>`)
         }
 
@@ -56,7 +61,7 @@ function addTask() {
         due_date: $('#dateIn').val(),
     }
     console.log('new task is:', sendingTask);
-    
+
     $.ajax({
         type: 'POST',
         url: '/tasks',
@@ -68,3 +73,18 @@ function addTask() {
         alert('error adding task:', error);
     })
 } // end addTask
+
+function deleteTask() {
+    let deleteId = $(this).data('id'); // setting variable to id #
+    console.log(deleteId);
+
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${deleteId}`
+    }).then(function(response) {
+        console.log(response);
+        loadTasks(); // reloading DOM with updated task table
+    }).catch(function (error) {
+        console.log('error while deleting task', error);
+    })
+} // end deleteTask

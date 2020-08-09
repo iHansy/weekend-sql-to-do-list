@@ -16,11 +16,11 @@ index.html / css
     {X} Add beginning phase of DOM
     {} Make description box larger than other inputs
 server.js
-    {} Set up pg, express, module, body parser, app.listen
+    {X} Set up pg, express, module, body parser, app.listen
 front-end -> back-end workflow
-    {} Set up onReady function
-    {} Create getToDoList function (for loops for true/false & empty date to change appending text)
-    {} Create addTask function
+    {X} Set up onReady function
+    {X} Create getToDoList function (for loops for true/false & empty date to change appending text)
+    {X} Create addTask function
     {} Create deleteTask function
     {} Create taskComplete function
 
@@ -42,3 +42,4 @@ Extras/Stretch
     {} Match date format in input to table date
     {} Change button sizes / spacing
     {} Fix order for all no due dates
+    {} Alerts for empty inputs and catch errors
