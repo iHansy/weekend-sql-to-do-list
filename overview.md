@@ -45,3 +45,4 @@ Extras/Stretch
     {} Alerts for empty inputs and catch errors
     {} Make it so table cells don't change sizes based on length of text inside
     {} Add alert saying task is already complete
+    {} Add placeholder / input due date

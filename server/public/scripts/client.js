@@ -102,7 +102,12 @@ function deleteTask() {
 
 function completeTask() {
     let completeId = $(this).data('id'); // finding id of task
-    let status = $(this).data('status');
+    let status = $(this).data('status'); // finding status of current task.. either true or false
+
+    if (status === true) {
+        alert ('Task already complete!');
+        return
+    }
 
     console.log('Marking task as complete...id:', completeId);
     console.log(status);
@@ -118,6 +123,6 @@ function completeTask() {
         console.log('back from PUT', response);
         loadTasks(); // reloading DOM with task complete
     }).catch(function(error) {
-        alert('ERROR completing task:,' error);
+        alert('ERROR completing task:,', error);
     })
 } // end completeTask

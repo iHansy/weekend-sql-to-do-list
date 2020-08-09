@@ -12,7 +12,7 @@ const config = {
 }
 
 const pool = new pg.Pool(config);
-// connecting postgres
+// connecting to postgresql
 pool.on('connect', () => {
     console.log('connected to postgres');
 });
@@ -21,9 +21,8 @@ pool.on('error', (error) => {
     console.log('error connecting to postgres', error);
 });
 
-//ROUTES
-// receiving tasks from sql database and sending to client
-taskRouter.get('/', (req, res) => {
+//ROUTES <------> ROUTES // 
+taskRouter.get('/', (req, res) => { // receiving tasks from sql database and sending to client
     // sql code being declared
     let queryText = `SELECT * FROM "tasks" ORDER BY "due_date";`;
     // making request to sql database
@@ -36,8 +35,8 @@ taskRouter.get('/', (req, res) => {
     })
 }) // end taskRouter.get
 
-// sending post request to postgresql database server
-taskRouter.post('/', (req, res) => {
+
+taskRouter.post('/', (req, res) => { // sending post request to postgresql database server
     let queryText = `
         INSERT INTO "tasks" ("task", "description", "due_date")
         VALUES ($1, $2, $3);
@@ -57,17 +56,14 @@ taskRouter.post('/', (req, res) => {
         res.sendStatus(500);
     })
 
-})
+}) // end taskRouter.post
 
-// sending delete request to sql database server
-taskRouter.delete('/:id', (req, res) => {
+
+taskRouter.delete('/:id', (req, res) => { // sending delete request to sql database server
     let id = req.params.id; // id of the thing to delete comes through params
     console.log('delete route called with id of', id);
-    let queryText = `
-        DELETE FROM "tasks"
-        WHERE "id" = $1;
-        `;
-    
+    let queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
+
     // sending query request to database to delete id as parameter
     pool.query(queryText, [id]).then((result) => {
         res.sendStatus(202); // Accepted
@@ -76,8 +72,19 @@ taskRouter.delete('/:id', (req, res) => {
         // responding back to client if error
         res.sendStatus(500); // internal server error
     })
-})
+}) // end taskRouter.delete
 
 
+taskRouter.put('/:id', (req, res) => { // sending request to sql database to change status to true/completed
+    console.log('/tasks PUT:', req.params.id, req.body); 
+    const queryText = `UPDATE "tasks" SET status = $1 WHERE id = $2;`; // sql code going to database server
+    const values = [req.body.newStatus, req.params.id]; //params.id is id and req.body is status being changed to true
+    pool.query(queryText, values).then((results) => {
+        res.sendStatus(202); // accepted
+    }).catch((error) => { // if receiving error from database accepting this update
+        console.log('error updating status:', error);
+        res.sendStatus(500); // internal server error
+    })
+}) // end taskRouter.put
 
 module.exports = taskRouter;
