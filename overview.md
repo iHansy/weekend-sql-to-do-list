@@ -47,17 +47,17 @@ Extras/Stretch
     {} Add placeholder / input due date
 
 Even more extras
-    {} When complete, stripe through everything but complete status, change complete to green text, red for incomplete
+    {X} When complete, stripe through everything but complete status, change complete to green text, red for incomplete
     {} IF TIME left. Look into adding a 3rd in progress status
 
 
 
 Where to add sweet alerts
 {} catch error in adding task, client.js
-{} Alert for empty task input
+{X} Alert for empty task input
 
 
 
 
 ENDING IF TIME
-{} Fix footer created by Hans Accola
+{X} Fix footer created by Hans Accola

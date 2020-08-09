@@ -83,7 +83,8 @@ function addTask() {
         due_date: $('#dateIn').val(),
     }
 
-    if (sendingTask.task === ''){
+    // alert for empty task input field
+    if (sendingTask.task === ''){ 
         alert('Please fill in the task input field.');
         return;
     }
@@ -136,7 +137,7 @@ function completeTask() {
     let status = $(this).data('status'); // finding status of current task.. either true or false
 
     if (status === true) {
-        alert('Task already complete!');
+        alert('Task is already completed!');
         return
     }
 
