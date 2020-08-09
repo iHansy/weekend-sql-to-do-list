@@ -4,6 +4,7 @@ function startProject() {
     loadTasks(); // tasks appearing on page load
     $('#taskBtn').on('click', addTask);
     $('#tasksTable').on('click', '.deleteBtn', deleteTask);
+    $('#tasksTable').on('click', '.completeBtn', completeTask);
 
 
 } // end startProject
@@ -30,10 +31,11 @@ function loadTasks() {
                 task.due_date = date; // sliced off timestamp
             } // end if..else
 
+            let statusChange = ''; // keeping value of task.status same so I can use it in data-status in completeBtn
             if (task.status === false) {
-                task.status = 'Not completed';
+                statusChange = 'Not completed';
             } else {
-                task.status = 'Complete';
+                statusChange = 'Complete';
             }
               
             tableBody.append(
@@ -41,8 +43,8 @@ function loadTasks() {
                     <td>${task.task}</td>
                     <td>${task.description}</td>
                     <td>${task.due_date}</td>
-                    <td>${task.status}</td>
-                    <td><button class="completeBtn" data-id="${task.id}">Complete</button></td>
+                    <td>${statusChange}</td>
+                    <td><button class="completeBtn" data-id="${task.id}" data-status="${task.status}">Complete</button></td>
                     <td><button class="deleteBtn" data-id="${task.id}">Delete</button></td>
                 </tr>`)
         }
@@ -69,10 +71,17 @@ function addTask() {
     }).then(function(response) { 
         console.log('back from POST:', response);
         loadTasks(); // reloading DOM with updated tasks from sql database
+        clearInputs();
     }).catch(function(error) {
         alert('error adding task:', error);
     })
 } // end addTask
+
+function clearInputs() {
+    $('#taskIn').val('')
+    $('#descriptionIn').val('')
+    $('#dateIn').val('')
+} // end clearInputs
 
 function deleteTask() {
     let deleteId = $(this).data('id'); // setting variable to id #
@@ -90,3 +99,25 @@ function deleteTask() {
         console.log('error while deleting task', error);
     })
 } // end deleteTask
+
+function completeTask() {
+    let completeId = $(this).data('id'); // finding id of task
+    let status = $(this).data('status');
+
+    console.log('Marking task as complete...id:', completeId);
+    console.log(status);
+    let payload = {
+        newStatus: !status
+    }
+
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${completeId}`,
+        data: payload
+    }).then(function(response) {
+        console.log('back from PUT', response);
+        loadTasks(); // reloading DOM with task complete
+    }).catch(function(error) {
+        alert('ERROR completing task:,' error);
+    })
+} // end completeTask

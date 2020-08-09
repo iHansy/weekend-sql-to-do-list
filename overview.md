@@ -21,7 +21,7 @@ front-end -> back-end workflow
     {X} Set up onReady function
     {X} Create getToDoList function (for loops for true/false & empty date to change appending text)
     {X} Create addTask function
-    {} Create deleteTask function
+    {X} Create deleteTask function
     {} Create taskComplete function
 
 Extras/Stretch
@@ -43,3 +43,5 @@ Extras/Stretch
     {} Change button sizes / spacing
     {} Fix order for all no due dates
     {} Alerts for empty inputs and catch errors
+    {} Make it so table cells don't change sizes based on length of text inside
+    {} Add alert saying task is already complete
