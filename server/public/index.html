@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="icon" href="./vendors/favicon.ico">
     <title>To-Do List</title>
 </head>
+
 <body>
     <header>
         <h1>Task Tracker</h1>
@@ -18,13 +20,12 @@
         <input type="text" class="taskIn" id="taskIn" placeholder="task">
         <input type="text" class="descriptionIn" id="descriptionIn" placeholder="description">
         <input type="date" class="dateIn" id="dateIn">
-        <button class="taskBtn" id="taskBtn">Add task</button>
+        <button class="taskBtn btn-success" id="taskBtn">Add task</button>
     </section>
     <main>
-        <h3>Task List</h3>
-        <table>
-            <thead>
-                <tr>
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr class>
                     <th>Task</th>
                     <th>Description</th>
                     <th>Due Date</th>
@@ -44,4 +45,5 @@
 
 
 </body>
+
 </html>

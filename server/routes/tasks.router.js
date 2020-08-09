@@ -24,7 +24,7 @@ pool.on('error', (error) => {
 //ROUTES <------> ROUTES // 
 taskRouter.get('/', (req, res) => { // receiving tasks from sql database and sending to client
     // sql code being declared
-    let queryText = `SELECT * FROM "tasks" ORDER BY "due_date";`;
+    let queryText = `SELECT * FROM "tasks" ORDER BY "due_date", "task";`;
     // making request to sql database
     pool.query(queryText).then(result => {
         // sends back the results in an array of objects
@@ -76,7 +76,7 @@ taskRouter.delete('/:id', (req, res) => { // sending delete request to sql datab
 
 
 taskRouter.put('/:id', (req, res) => { // sending request to sql database to change status to true/completed
-    console.log('/tasks PUT:', req.params.id, req.body); 
+    console.log('/tasks PUT:', req.params.id, req.body);
     const queryText = `UPDATE "tasks" SET status = $1 WHERE id = $2;`; // sql code going to database server
     const values = [req.body.newStatus, req.params.id]; //params.id is id and req.body is status being changed to true
     pool.query(queryText, values).then((results) => {

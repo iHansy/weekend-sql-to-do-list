@@ -22,13 +22,12 @@ front-end -> back-end workflow
     {X} Create getToDoList function (for loops for true/false & empty date to change appending text)
     {X} Create addTask function
     {X} Create deleteTask function
-    {} Create taskComplete function
+    {X} Create taskComplete function
 
 Extras/Stretch
     {} Create function to reverse date
     {} Add date assigned/completed columns
     {} Add styling via bootstrap
-    {} Add alerts via sweet alert
     {} Only allow certain data types
     {} Add a 3rd status as in progress
     {} Possibly create function ect to reformat date??
@@ -40,9 +39,25 @@ Extras/Stretch
     {} See if I can change buttons to not stick with bootstrap
     {} Center text in table cells
     {} Match date format in input to table date.. manipulate in client.js, couldn't figure out how to do it in postgresql
-    {} Change button sizes / spacing
-    {} Fix order for all no due dates
+    {X} Change button sizes / spacing
+    {X} Fix order for all no due dates
     {} Alerts for empty inputs and catch errors
-    {} Make it so table cells don't change sizes based on length of text inside
+    {X} Make it so table cells don't change sizes based on length of text inside
     {} Add alert saying task is already complete
     {} Add placeholder / input due date
+
+Even more extras
+    {} When complete, stripe through everything but complete status, change complete to green text, red for incomplete
+    {} IF TIME left. Look into adding a 3rd in progress status
+
+
+
+Where to add sweet alerts
+{} catch error in adding task, client.js
+{} Alert for empty task input
+
+
+
+
+ENDING IF TIME
+{} Fix footer created by Hans Accola
