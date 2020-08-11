@@ -1,5 +1,6 @@
 body {
-    background-image: url("background.jpg")
+    background-image: url('background.jpg');
+    background-size: cover;
 }
 
 header h1{
@@ -22,6 +23,7 @@ main {
     border: solid 4px;
     border-radius: 10px;
     border-color: rgb(52, 58, 64);
+    margin-bottom: 2em;
 }
 
 .tableHeaders{
@@ -34,7 +36,7 @@ footer p {
     position: absolute;    
     text-align: right;    
     top: 7px; 
-    width: 98%;
+    width: 99.3%;
     font-size: 13px;
     /* color: cornflowerblue; */
     font-family: fantasy;
@@ -84,5 +86,3 @@ th {
     left: 95px;
     color: gray;
 }
-
-
