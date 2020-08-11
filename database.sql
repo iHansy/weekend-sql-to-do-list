@@ -1,4 +1,4 @@
-CREATE TABLE "test" (
+CREATE TABLE "tasks" (
 "id" SERIAL PRIMARY KEY,
 "task" VARCHAR(50) NOT NULL,
 "description" VARCHAR(255) DEFAULT 'no description',
