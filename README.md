@@ -4,6 +4,8 @@
 
 ## 
 
+Check out the live application here - https://task-manager-byhans.herokuapp.com/
+
 This task manager was created to keep track of tasks with multiple user friendly features.
 
 Highlights of featured functionality:
